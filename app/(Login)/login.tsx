@@ -1,7 +1,8 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Dimensions, SafeAreaView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
+import { Link } from 'expo-router'
 
 const { width, height } = Dimensions.get('window')
 
@@ -16,7 +17,7 @@ export default function Login() {
     'BebasNeue-Regular': require('../../assets/fonts/BebasNeue-Regular.ttf'),
   })
 
-  const onLayoutRootView = React.useCallback(async () => {
+  const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync()
     }
@@ -61,13 +62,11 @@ export default function Login() {
           onChangeText={setPassword}
           secureTextEntry
         />
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => console.log('Login pressed')}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+        <Link 
+           href="/(Home)/Course"
+           style={styles.button}>
+           <Text style={styles.buttonText}>Login</Text>
+         </Link>
       </View>
     </SafeAreaView>
   )
