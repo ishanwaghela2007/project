@@ -2,6 +2,15 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const Upcoming = ({ upcomingCourses }) => {
+  if (!upcomingCourses || upcomingCourses.length === 0) {
+    return (
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Upcoming Courses</Text>
+        <Text style={styles.noCourses}>No upcoming courses available</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Upcoming Courses</Text>
@@ -44,6 +53,11 @@ const styles = StyleSheet.create({
   courseStartDate: {
     fontSize: 14,
     color: '#555',
+  },
+  noCourses: {
+    fontSize: 16,
+    color: '#888',
+    textAlign: 'center',
   },
 });
 
